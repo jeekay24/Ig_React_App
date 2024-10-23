@@ -1,8 +1,8 @@
 import { Text } from "react-native";
 
-export default function Home() {
+export default function CreatePost() {
     return (
-      <Text> Feed </Text>
+      <Text> Create Post </Text>
     );
   }
   
