@@ -7,7 +7,7 @@ export default function TabsLayout(){
 
             <Tabs.Screen name="index" options={{headerTitle: "For You",headerTitleAlign:"center",tabBarIcon: ({color}) => <FontAwesome name="home" size={26} color={color} />}}/>
 
-            <Tabs.Screen name="new" options={{headerTitle: "Create Post",headerTitleAlign:"center",tabBarIcon: ({color}) => <FontAwesome name="plus-square-o" size={26} color={color} />}}/>
+            <Tabs.Screen name="post" options={{headerTitle: "Create Post",headerTitleAlign:"center",tabBarIcon: ({color}) => <FontAwesome name="plus-square-o" size={26} color={color} />}}/>
 
             <Tabs.Screen name="profile" options={{headerTitle: "Profile",headerTitleAlign:"center",tabBarIcon: ({color}) => <FontAwesome name="user" size={26} color={color} />}}/>
 
