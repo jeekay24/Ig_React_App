@@ -1,37 +1,19 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs } from "expo-router"
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+export default function TabsLayout(){
+    return (
+        <Tabs screenOptions={{tabBarActiveTintColor:"black",tabBarShowLabel:false}}>
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+            <Tabs.Screen name="index" options={{headerTitle: "For You",headerTitleAlign:"center",tabBarIcon: ({color}) => <FontAwesome name="home" size={26} color={color} />}}/>
 
-  return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
-        }}
-      />
-    </Tabs>
-  );
+            <Tabs.Screen name="new" options={{headerTitle: "Create Post",headerTitleAlign:"center",tabBarIcon: ({color}) => <FontAwesome name="plus-square-o" size={26} color={color} />}}/>
+
+            <Tabs.Screen name="profile" options={{headerTitle: "Profile",headerTitleAlign:"center",tabBarIcon: ({color}) => <FontAwesome name="user" size={26} color={color} />}}/>
+
+        </Tabs>
+
+        
+    );
 }
+

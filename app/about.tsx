@@ -2,7 +2,7 @@ import { Text } from "react-native";
 
 export default function Home() {
     return (
-      <Text> Feed </Text>
+      <Text> You can see About us </Text>
     );
   }
   
