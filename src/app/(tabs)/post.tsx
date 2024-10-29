@@ -1,7 +1,7 @@
 import { Text, View, Image, TextInput, Pressable } from "react-native";
 import { useEffect, useState } from "react";
 import * as ImagePicker from 'expo-image-picker';
-import { uploadImageToS3 } from '@/aws-config';
+import { uploadImageToS3, savePostToDynamoDB, fetchPostsFromDynamoDB} from '@/aws-config';
 
 export default function CreatePost() {
   const [caption, setCaption] = useState('');
@@ -24,14 +24,24 @@ export default function CreatePost() {
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
+    }
+  };
 
+  const handleUpload = async () => {
+    if (image && caption) {
       try {
-        const response = await uploadImageToS3(result.assets[0].uri);
-        console.log('Image uploaded successfully:', response);
-        // Optionally handle the response, e.g., save the S3 URL in your post data
+        // Step 1: Upload image to S3 and get the URL
+        const imageURL = await uploadImageToS3(image);
+
+        // Step 2: Save post data (imageURL and caption) to DynamoDB
+        await savePostToDynamoDB(imageURL, caption);
+        console.log('Post saved successfully');
+
       } catch (error) {
-        console.error('Error uploading image:', error);
+        console.error('Error uploading post:', error);
       }
+    } else {
+      console.log("Image or caption is missing");
     }
   };
 
@@ -50,9 +60,9 @@ export default function CreatePost() {
         { /* TextInput for caption */ }
         <TextInput value={caption} onChangeText={(newValue) => setCaption(newValue)} placeholder="What's on your mind" className=" w-full p-3" />
         
-        { /* Button */ }
+        { /* Upload Button */ }
         <View className="mt-auto w-full">
-        <Pressable className="bg-blue-500 w-full p-4 items-center rounded-md">
+        <Pressable onPress={handleUpload} className="bg-blue-500 w-full p-4 items-center rounded-md">
           <Text className="text-white font-semibold"> Upload </Text>
         </Pressable>
         </View>
