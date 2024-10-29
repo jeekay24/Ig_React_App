@@ -1,6 +1,7 @@
 import { Text, View, Image, TextInput, Pressable } from "react-native";
 import { useEffect, useState } from "react";
 import * as ImagePicker from 'expo-image-picker';
+import { uploadImageToS3 } from '@/aws-config';
 
 export default function CreatePost() {
   const [caption, setCaption] = useState('');
@@ -23,6 +24,14 @@ export default function CreatePost() {
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
+
+      try {
+        const response = await uploadImageToS3(result.assets[0].uri);
+        console.log('Image uploaded successfully:', response);
+        // Optionally handle the response, e.g., save the S3 URL in your post data
+      } catch (error) {
+        console.error('Error uploading image:', error);
+      }
     }
   };
 
@@ -44,7 +53,7 @@ export default function CreatePost() {
         { /* Button */ }
         <View className="mt-auto w-full">
         <Pressable className="bg-blue-500 w-full p-4 items-center rounded-md">
-          <Text className="text-white font-semibold"> Share </Text>
+          <Text className="text-white font-semibold"> Upload </Text>
         </Pressable>
         </View>
       </View>
