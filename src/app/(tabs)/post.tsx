@@ -1,4 +1,4 @@
-import { Text, View, Image, TextInput, Pressable } from "react-native";
+import { Text, View, Image, TextInput, Pressable, ToastAndroid } from "react-native";
 import { useEffect, useState } from "react";
 import * as ImagePicker from 'expo-image-picker';
 import { uploadImageToS3, savePostToDynamoDB} from '@/aws-config';
@@ -35,6 +35,7 @@ export default function CreatePost() {
 
         // Step 2: Save post data (imageURL and caption) to DynamoDB
         await savePostToDynamoDB(imageURL, caption);
+        ToastAndroid.show("Post uploaded successfully!", ToastAndroid.SHORT); // Display toast
         console.log('Post saved successfully');
       
       } catch (error) {
