@@ -71,9 +71,10 @@ const styles = StyleSheet.create({
     aspectRatio: 4 / 3,
   },
   caption: {
-    padding: 18,
+    padding: 8,
     fontSize: 14,
     color: 'black',
+    marginLeft: 8,
   },
   iconRow: {
     flexDirection: 'row',
