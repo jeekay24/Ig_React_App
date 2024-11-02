@@ -15,6 +15,7 @@ interface Post {
   image_url: string; // Post image URL
   caption: string; // Post caption
   user: User; // User object
+  liked: boolean;
 }
 
 export default function FeedScreen() {
@@ -35,6 +36,7 @@ export default function FeedScreen() {
             user_image_url: post.user?.user_image_url || "https://ig-clone-24.s3.us-east-1.amazonaws.com/1730283974240.jpg", // Placeholder or fetched user image URL
             username: post.user?.username || "jeekay24", // Placeholder or fetched username
           },
+          liked: false,
         }));
 
     // Sort posts by creation date, newest first
@@ -50,6 +52,7 @@ export default function FeedScreen() {
           user_image_url: "https://ig-clone-24.s3.us-east-1.amazonaws.com/1730283974240.jpg",
           username: "jeekay24",
         },
+        liked: false,
       },
       {
         id: "2",
@@ -60,6 +63,7 @@ export default function FeedScreen() {
           user_image_url: "https://ig-clone-24.s3.us-east-1.amazonaws.com/1730283974240.jpg",
           username: "jeekay24",
         },
+        liked: false,
       },
     ];
   
@@ -70,6 +74,15 @@ export default function FeedScreen() {
         setLoading(false);
       }
     };
+
+    // Function to toggle like status
+  const toggleLike = (postId: string) => {
+    setPosts((prevPosts) =>
+      prevPosts.map((post) =>
+        post.id === postId ? { ...post, liked: !post.liked } : post
+      )
+    );
+  };
 
   useEffect(() => {  
     loadPosts(); // Call the loadPosts function
@@ -86,7 +99,7 @@ export default function FeedScreen() {
   return(
     <FlatList
     data={posts}
-    renderItem={({item}) => <PostListItem post={item} /> }
+    renderItem={({item}) => <PostListItem post={item} toggleLike={toggleLike} /> }
     keyExtractor={(item) => item.id}
     contentContainerStyle={{gap:10, maxWidth:512, alignSelf:'center', width:'100%', backgroundColor:'white'}}
     showsVerticalScrollIndicator={false}
