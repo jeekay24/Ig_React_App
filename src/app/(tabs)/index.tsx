@@ -19,9 +19,39 @@ interface Post {
   user: User; // User object
 }
 
-
 export default function FeedScreen() {
   const [posts, setPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    const mockPosts = [
+      {
+        id: "1",
+        image: "https://example.com/image1.jpg",
+        image_url: "https://example.com/image1.jpg",
+        caption: "This is a sample post",
+        user: {
+          id: "user1",
+          avatar_url: "https://example.com/avatar1.jpg",
+          image_url: "https://ig-clone-24.s3.us-east-1.amazonaws.com/1730283974240.jpg",
+          username: "jeekay24",
+        },
+      },
+      {
+        id: "2",
+        image: "https://example.com/image2.jpg",
+        image_url: "https://example.com/image2.jpg",
+        caption: "Another sample post",
+        user: {
+          id: "user2",
+          avatar_url: "https://example.com/avatar2.jpg",
+          image_url: "https://ig-clone-24.s3.us-east-1.amazonaws.com/1730283974240.jpg",
+          username: "jeekay24",
+        },
+      },
+    ];
+  
+    setPosts(mockPosts); // Set mock posts to verify rendering
+  }, []);
 
   return(
     <FlatList

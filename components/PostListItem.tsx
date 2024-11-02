@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   avatar: {
-    width: 56,
+    width: 46,
     aspectRatio: 1,
     borderRadius: 28,
   },
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   iconRow: {
     flexDirection: 'row',
-    padding: 12,
+    padding: 16,
     gap: 12,
   },
   iconRight: {
