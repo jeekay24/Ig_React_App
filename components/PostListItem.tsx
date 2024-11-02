@@ -1,4 +1,4 @@
-import {View, Image, Text, StyleSheet} from 'react-native';
+import {View, Image, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import { Ionicons, Feather, AntDesign} from '@expo/vector-icons';
 
 interface User {
@@ -12,13 +12,15 @@ interface Post {
   image_url: string;
   caption: string;
   user: User;
+  liked: boolean;
 }
 
 interface PostListItemProps {
   post: Post;
+  toggleLike: (postId: string) => void; // Add toggleLike function prop
 }
 
-export default function PostListItem( { post }: PostListItemProps ){
+export default function PostListItem( { post, toggleLike }: PostListItemProps ){
     return (
       <View style={styles.container}>
       {/* Header */}
@@ -32,7 +34,9 @@ export default function PostListItem( { post }: PostListItemProps ){
   
           {/* Icons */}
           <View style={styles.iconRow}>
-            <AntDesign name="hearto" size={20} />
+            <TouchableOpacity onPress={() => toggleLike(post.id)}>
+              <AntDesign name={post.liked ? "heart": "hearto"} size={20} color={post.liked ? '#FD1D1D' : 'black'} />
+            </TouchableOpacity>
             <Ionicons name="chatbubble-outline" size={20} />
             <Feather name="send" size={20} />
             <Feather name="bookmark" size={20} style={styles.iconRight} />
