@@ -29,12 +29,16 @@ export default function FeedScreen() {
           id: post.postId || "",
           image_url: post.imageURL || "",
           caption: post.caption || "",
+          createdAt: post.createdAt || new Date().toISOString(), // Make sure to use a timestamp
           user: {
             id: post.user?.id || "user1", // You can fetch the user data from your database if needed
             user_image_url: post.user?.user_image_url || "https://ig-clone-24.s3.us-east-1.amazonaws.com/1730283974240.jpg", // Placeholder or fetched user image URL
             username: post.user?.username || "jeekay24", // Placeholder or fetched username
           },
         }));
+
+    // Sort posts by creation date, newest first
+    const sortedPosts = formattedPosts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
     const mockPosts = [
       {
@@ -59,7 +63,7 @@ export default function FeedScreen() {
       },
     ];
   
-    setPosts([...formattedPosts, ...mockPosts]); // Set both fetched and mock posts
+    setPosts([...sortedPosts, ...mockPosts]); // Set both fetched and mock posts
       } catch (error) {
         console.error("Error fetching posts:", error);
       } finally {
