@@ -28,6 +28,8 @@ export default function PostListItem( { post }: PostListItemProps ){
         <Image source={{ uri: post.user.image_url }} style={styles.avatar} />
         <Text style={styles.username}>{post.user.username}</Text>
       </View>
+
+      {/* Post Image */}
       <Image source={{ uri: post.image_url }} style={styles.postImage} />
   
           {/* Icons */}
@@ -35,9 +37,15 @@ export default function PostListItem( { post }: PostListItemProps ){
             <AntDesign name="hearto" size={20} />
             <Ionicons name="chatbubble-outline" size={20} />
             <Feather name="send" size={20} />
-  
             <Feather name="bookmark" size={20} style={styles.iconRight} />
           </View>
+
+          {/* Caption */}
+      <Text style={styles.caption}>
+        <Text style={styles.username}>{post.user.username}</Text>
+        {'  '}
+        {post.caption}
+        </Text>
         </View>
     );
 }
@@ -63,6 +71,11 @@ const styles = StyleSheet.create({
   postImage: {
     width: '100%',
     aspectRatio: 4 / 3,
+  },
+  caption: {
+    padding: 18,
+    fontSize: 14,
+    color: 'black',
   },
   iconRow: {
     flexDirection: 'row',
