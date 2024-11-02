@@ -3,14 +3,12 @@ import { Ionicons, Feather, AntDesign} from '@expo/vector-icons';
 
 interface User {
   id: string;
-  avatar_url: string;
-  image_url: string;
+  user_image_url: string;
   username: string;
 }
 
 interface Post {
   id: string;
-  image: string;
   image_url: string;
   caption: string;
   user: User;
@@ -25,7 +23,7 @@ export default function PostListItem( { post }: PostListItemProps ){
       <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Image source={{ uri: post.user.image_url }} style={styles.avatar} />
+        <Image source={{ uri: post.user.user_image_url }} style={styles.avatar} />
         <Text style={styles.username}>{post.user.username}</Text>
       </View>
 

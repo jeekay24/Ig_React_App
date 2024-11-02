@@ -6,14 +6,12 @@ import { fetchPostsFromDynamoDB } from "@/aws-config";
 
 interface User {
   id: string; // User ID
-  avatar_url: string; // User avatar URL (if needed)
-  image_url: string; // User image URL
+  user_image_url: string; // User image URL
   username: string; // User name
 }
 
 interface Post {
   id: string; // Post ID
-  image: string; // This is in your structure but not used in PostListItem
   image_url: string; // Post image URL
   caption: string; // Post caption
   user: User; // User object
@@ -26,25 +24,21 @@ export default function FeedScreen() {
     const mockPosts = [
       {
         id: "1",
-        image: "https://example.com/image1.jpg",
-        image_url: "https://example.com/image1.jpg",
-        caption: "This is a sample post",
+        image_url: "https://ig-clone-24.s3.amazonaws.com/1730548185452.jpg",
+        caption: "Thala for a reason 😎💥",
         user: {
           id: "user1",
-          avatar_url: "https://example.com/avatar1.jpg",
-          image_url: "https://ig-clone-24.s3.us-east-1.amazonaws.com/1730283974240.jpg",
+          user_image_url: "https://ig-clone-24.s3.us-east-1.amazonaws.com/1730283974240.jpg",
           username: "jeekay24",
         },
       },
       {
         id: "2",
-        image: "https://example.com/image2.jpg",
-        image_url: "https://example.com/image2.jpg",
-        caption: "Another sample post",
+        image_url: "https://ig-clone-24.s3.amazonaws.com/1730283974240.jpg",
+        caption: "Night sky 🌃",
         user: {
           id: "user2",
-          avatar_url: "https://example.com/avatar2.jpg",
-          image_url: "https://ig-clone-24.s3.us-east-1.amazonaws.com/1730283974240.jpg",
+          user_image_url: "https://ig-clone-24.s3.us-east-1.amazonaws.com/1730283974240.jpg",
           username: "jeekay24",
         },
       },
