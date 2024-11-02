@@ -44,7 +44,7 @@ export default function FeedScreen() {
       {
         id: "1",
         image_url: "https://ig-clone-24.s3.amazonaws.com/1730548185452.jpg",
-        caption: "Thala for a reason 😎💥",
+        caption: "This is a mock post",
         user: {
           id: "user1",
           user_image_url: "https://ig-clone-24.s3.us-east-1.amazonaws.com/1730283974240.jpg",
@@ -53,8 +53,8 @@ export default function FeedScreen() {
       },
       {
         id: "2",
-        image_url: "https://ig-clone-24.s3.amazonaws.com/1730283974240.jpg",
-        caption: "Night sky 🌃",
+        image_url: "https://ig-clone-24.s3.us-east-1.amazonaws.com/cover+image.png",
+        caption: "This is a mock post",
         user: {
           id: "user2",
           user_image_url: "https://ig-clone-24.s3.us-east-1.amazonaws.com/1730283974240.jpg",
