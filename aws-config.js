@@ -1,12 +1,15 @@
 // aws-config.js
 import AWS from 'aws-sdk';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // Configure AWS
 AWS.config.update({
-  region: 'us-east-1', // Replace with your region
+  region: process.env.AWS_REGION, // Replace with your region
   credentials: new AWS.Credentials({
-    accessKeyId: 'AKIA6GBMA4MMUGJDFZ2M', // Replace with your access key
-    secretAccessKey: 'MeC7XA29sX9SMYv0zmHc7L8NvQtPT7koSj3Bt0zx', // Replace with your secret key
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID, // Replace with your access key
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY, // Replace with your secret key
   }),
 });
 
